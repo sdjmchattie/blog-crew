@@ -11,9 +11,6 @@ dependencies = [
 [project.scripts]
 blog_post_writer = "blog_post_writer.main:run"
 run_crew = "blog_post_writer.main:run"
-train = "blog_post_writer.main:train"
-replay = "blog_post_writer.main:replay"
-test = "blog_post_writer.main:test"
 
 [build-system]
 requires = ["hatchling"]

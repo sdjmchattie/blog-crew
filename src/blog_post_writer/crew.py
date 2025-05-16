@@ -16,7 +16,7 @@ class BlogPostWriter():
     # Learn more about YAML configuration files here:
     # Agents: https://docs.crewai.com/concepts/agents#yaml-configuration-recommended
     # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
-    
+
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
@@ -27,9 +27,23 @@ class BlogPostWriter():
         )
 
     @agent
-    def reporting_analyst(self) -> Agent:
+    def copywriter(self) -> Agent:
         return Agent(
-            config=self.agents_config['reporting_analyst'], # type: ignore[index]
+            config=self.agents_config['copywriter'], # type: ignore[index]
+            verbose=True
+        )
+
+    @agent
+    def editor(self) -> Agent:
+        return Agent(
+            config=self.agents_config['editor'], # type: ignore[index]
+            verbose=True
+        )
+
+    @agent
+    def markdown_expert(self) -> Agent:
+        return Agent(
+            config=self.agents_config['markdown_expert'], # type: ignore[index]
             verbose=True
         )
 
@@ -43,10 +57,22 @@ class BlogPostWriter():
         )
 
     @task
-    def reporting_task(self) -> Task:
+    def write_task(self) -> Task:
         return Task(
-            config=self.tasks_config['reporting_task'], # type: ignore[index]
-            output_file='report.md'
+            config=self.tasks_config['write_task'], # type: ignore[index]
+        )
+
+    @task
+    def edit_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['edit_task'], # type: ignore[index]
+        )
+
+    @task
+    def export_markdown_task(self) -> Task:
+        return Task(
+            config=self.tasks_config['export_markdown_task'], # type: ignore[index]
+            output_file='blog_post.md'
         )
 
     @crew

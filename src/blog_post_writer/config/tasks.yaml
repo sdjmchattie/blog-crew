@@ -1,17 +1,65 @@
 research_task:
   description: >
-    Conduct a thorough research about {topic}
-    Make sure you find any interesting and relevant information given
-    the current year is {current_year}.
+    Conduct thorough research for a blog post about {topic}.
+    Ensure your material is relevant to the topic and suitable for a blog about
+    software development, software tools and software architecture.
+    The material should be presented in a way that it can be passed directly to
+    a copywriter to write the blog post. The readers will not necessarily be
+    experts in the field, so do not assume a wealth of prior knowledge, but
+    do assume a basic understanding of software development concepts.
   expected_output: >
-    A list with 10 bullet points of the most relevant information about {topic}
+    Concise but detailed research notes about {topic}. These notes should be
+    all that a copywriter needs to write a blog post. The notes should be
+    structured in a way that makes it easy for the copywriter to follow.
   agent: researcher
 
-reporting_task:
+write_task:
   description: >
-    Review the context you got and expand each topic into a full section for a report.
-    Make sure the report is detailed and contains any and all relevant information.
+    Write a blog post based on the research findings about {topic}.
+    The post should be engaging and informative, and it should be written in a
+    way that resonates with the audience. The writing should be clear, concise,
+    and always on point.
   expected_output: >
-    A fully fledged report with the main topics, each with a full section of information.
-    Formatted as markdown without '```'
-  agent: reporting_analyst
+    A well-structured blog post about {topic} that is engaging and informative.
+    The post should be written in a way that resonates with the audience and
+    should be clear, concise, and easy to read. It should be suitable for
+    publication on a blog about software development, software tools and
+    software architecture.
+  agent: copywriter
+
+edit_task:
+  description: >
+    Edit the blog post to ensure it meets the highest standards of quality.
+    The editing should focus on clarity, conciseness, and engagement.
+    Ensure that the writing is polished and professional, and that it is
+    suitable for publication on a blog about software development, software
+    tools and software architecture.
+  expected_output: >
+    A polished and professional blog post about {topic} that meets the
+    highest standards of quality. The post should be clear, concise, and
+    engaging, and it should be suitable for publication on a blog about
+    software development, software tools and software architecture.
+  agent: editor
+
+export_markdown_task:
+  description: >
+    Format the information passed to you from the editor into markdown,
+    ensuring it follows a logical structure and meets the style guide.
+  expected_output: >
+    A markdown formatted document which sticks to the following style guide:
+
+    - Start the post with a catchy level 1 title header based on the post topic:
+      {topic}.
+    - Include a few sentences of friendly introduction to the post material.
+    - Use a mix of level 2 and level 3 headings as needed to create logical
+      sections and subsections.
+    - Code should be formatted as code blocks with the correct language
+      highlighting.
+    - Put each sentence on a new line.
+    - Finish the post with a level 2 header called wrapping up, giving a summary
+      of the post and a call to action.
+
+    The markdown should be the only content in the response, with no other
+    explanations or comments and should not be wrapped in a code block.
+    It should be be output so it could be piped directly to a file.
+  agent: markdown_expert
