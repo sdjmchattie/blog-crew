@@ -17,12 +17,15 @@ write_task:
   description: >
     Write a blog post based on the research findings about {topic}.
     The post should be engaging and informative, and it should be written in a
-    way that resonates with the audience. The writing should be clear, concise,
-    and always on point.
+    way that resonates with an audience of amateur to professional engineers.
+    The post should not focus on management or business aspects, but rather on
+    the technical and practical aspects of the topic. The writing should be
+    clear, concise, and always on point.
   expected_output: >
     A well-structured blog post about {topic} that is engaging and informative.
     The post should be written in a way that resonates with the audience and
-    should be clear, concise, and easy to read. It should be suitable for
+    should be clear, concise, and easy to read. It should take no longer than 10
+    minutes to read and preferably shorter. It should be suitable for
     publication on a blog about software development, software tools and
     software architecture.
   agent: copywriter
@@ -46,20 +49,27 @@ export_markdown_task:
     Format the information passed to you from the editor into markdown,
     ensuring it follows a logical structure and meets the style guide.
   expected_output: >
-    A markdown formatted document which sticks to the following style guide:
+    A markdown version of the document from the editor. None of the original
+    material should be changed, but it can be reformatted to fit the
+    requirements of the markdown format.
 
+    Your output must be strictly just the markdown content, with no other
+    explanations or comments. The markdown should be raw as if it is being
+    written directly into a markdown file.
+
+    The document must adhere to the following style guide:
+
+    - Use UK English spelling and grammar.
     - Start the post with a catchy level 1 title header based on the post topic:
       {topic}.
     - Include a few sentences of friendly introduction to the post material.
     - Use a mix of level 2 and level 3 headings as needed to create logical
       sections and subsections.
-    - Code should be formatted as code blocks with the correct language
+    - Code must be formatted as code blocks with the correct language
       highlighting.
     - Put each sentence on a new line.
     - Finish the post with a level 2 header called wrapping up, giving a summary
       of the post and a call to action.
-
-    The markdown should be the only content in the response, with no other
-    explanations or comments and should not be wrapped in a code block.
-    It should be be output so it could be piped directly to a file.
+    - Lists must use hyphens as bullet points.
+    - Numbered lists must use 1. for every item.
   agent: markdown_expert
