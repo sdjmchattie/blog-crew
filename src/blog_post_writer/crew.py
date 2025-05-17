@@ -60,6 +60,7 @@ class BlogPostWriter():
     def refinement_task(self) -> Task:
         return Task(
             config=self.tasks_config['refinement_task'], # type: ignore[index]
+            human_input=True,
         )
 
     @task
