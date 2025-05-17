@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from datetime import datetime
 import warnings
 
 from blog_post_writer.crew import BlogPostWriter
@@ -14,12 +15,13 @@ def run():
     """
     Run the crew.
     """
-    topic = input("Enter the topic for the blog post: ")
-    if not topic:
-        raise ValueError("Topic cannot be empty.")
+    description = input("Describe the blog post you'd like to have written: ")
+    if not description:
+        raise ValueError("Description cannot be empty.")
 
     inputs = {
-        'topic': topic,
+        'description': description,
+        'current_year': str(datetime.now().year),
     }
 
     try:

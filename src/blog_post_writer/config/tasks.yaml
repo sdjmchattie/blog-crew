@@ -1,75 +1,65 @@
-research_task:
+outlining_task:
   description: >
-    Conduct thorough research for a blog post about {topic}.
-    Ensure your material is relevant to the topic and suitable for a blog about
-    software development, software tools and software architecture.
-    The material should be presented in a way that it can be passed directly to
-    a copywriter to write the blog post. The readers will not necessarily be
-    experts in the field, so do not assume a wealth of prior knowledge, but
-    do assume a basic understanding of software development concepts.
+    Create a comprehensive outline for a blog post written in UK English.
+    The blog post description is as follows:
+    {description}
   expected_output: >
-    Concise but detailed research notes about {topic}. These notes should be
-    all that a copywriter needs to write a blog post. The notes should be
-    structured in a way that makes it easy for the copywriter to follow.
-  agent: researcher
+    The post should use UK English spelling and grammar.
+    The outline should include a catchy title at the start to appeal to someone browsing the posts of the blog.
+    After the title, indicate that there should be a few sentences of friendly introduction to the post material.
+    Then outline the headers and subheaders for the rest of the post with a very brief note of the content that goes in each section.
+    Only use level 2 and level 3 headers for the outline.
+    The headers should use title case.
+    The final header must be a level 2 header called "Wrapping Up" and needs to include a summary of the post and a call to action.
+  agent: outliner
 
-write_task:
+drafting_task:
   description: >
-    Write a blog post based on the research findings about {topic}.
-    The post should be engaging and informative, and it should be written in a
-    way that resonates with an audience of amateur to professional engineers.
-    The post should not focus on management or business aspects, but rather on
-    the technical and practical aspects of the topic. The writing should be
-    clear, concise, and always on point.
+    Flesh out the contents of a blog post based on the outline provided.
+    The description of the blog post is as follows:
+    {description}
   expected_output: >
-    A well-structured blog post about {topic} that is engaging and informative.
-    The post should be written in a way that resonates with the audience and
-    should be clear, concise, and easy to read. It should take no longer than 10
-    minutes to read and preferably shorter. It should be suitable for
-    publication on a blog about software development, software tools and
-    software architecture.
-  agent: copywriter
+    The post should use UK English spelling and grammar.
+    The post should be written in a friendly and engaging style, suitable for publication on a blog about software development, software tools and software architecture.
+    Remember that the audience is made up of amateur and professional software engineers trying to develop their knowledge and competence.
+    There is no need to focus on the concerns that businesses or managers might have surrounding the topic.
+    The post must adhere to the outline provided, but you can add additional detail and examples as needed.
+    The post should not exceed a read time of 10 minutes, but this is not a target to aim for.
+  agent: writer
 
-edit_task:
+refinement_task:
   description: >
-    Edit the blog post to ensure it meets the highest standards of quality.
-    The editing should focus on clarity, conciseness, and engagement.
-    Ensure that the writing is polished and professional, and that it is
-    suitable for publication on a blog about software development, software
-    tools and software architecture.
+    Review the blog post given and produce a refined version, ensuring the post is easy to follow and covers the topic thoroughly.
+    For reference, the description of the blog post is as follows:
+    {description}
   expected_output: >
-    A polished and professional blog post about {topic} that meets the
-    highest standards of quality. The post should be clear, concise, and
-    engaging, and it should be suitable for publication on a blog about
-    software development, software tools and software architecture.
-  agent: editor
+    A refined version of the blog post, using UK English spelling and grammar.
+    The post should be written in a friendly and engaging style, suitable for publication on a blog about software development, software tools and software architecture.
+    Remember that the audience is made up of amateur and professional software engineers trying to develop their knowledge and competence.
+    There is no need to focus on the concerns that businesses or managers might have surrounding the topic.
+  agent: writer
 
-export_markdown_task:
+convert_to_markdown_task:
   description: >
-    Format the information passed to you from the editor into markdown,
-    ensuring it follows a logical structure and meets the style guide.
+    Format the given blog post into markdown, ensuring it follows the style guide.
+    The blog post description is as follows:
+    {description}
   expected_output: >
-    A markdown version of the document from the editor. None of the original
-    material should be changed, but it can be reformatted to fit the
-    requirements of the markdown format.
+    A markdown version of the document from the editor.
+    None of the original material should be changed, but it can be reformatted to fit the requirements of the markdown format.
 
-    Your output must be strictly just the markdown content, with no other
-    explanations or comments. The markdown should be raw as if it is being
-    written directly into a markdown file.
+    Your output must strictly be just the markdown content, with no other explanations or comments.
+    The post should be output without '```' fences surrounding it, as if it is being written directly into a markdown file.
 
     The document must adhere to the following style guide:
 
-    - Use UK English spelling and grammar.
-    - Start the post with a catchy level 1 title header based on the post topic:
-      {topic}.
-    - Include a few sentences of friendly introduction to the post material.
-    - Use a mix of level 2 and level 3 headings as needed to create logical
-      sections and subsections.
-    - Code must be formatted as code blocks with the correct language
-      highlighting.
+    - All titles and headers must use title case.
     - Put each sentence on a new line.
-    - Finish the post with a level 2 header called wrapping up, giving a summary
-      of the post and a call to action.
-    - Lists must use hyphens as bullet points.
-    - Numbered lists must use 1. for every item.
+    - A level 1 header containing the blog title must be used in the first line of the post.
+    - The title will be followed by the friendly introduction text for the post, before any other headings.
+    - Headings and sub-headings will use level 2 and level 3 headers.
+    - Code must be formatted as code blocks with the correct language highlighting.
+    - The final header of the post will be a level 2 heading titled "Wrapping Up".
+    - Unordered lists must use hyphens as bullet points.
+    - Ordered lists must use 1. for every item.
   agent: markdown_expert

@@ -20,23 +20,16 @@ class BlogPostWriter():
     # If you would like to add tools to your agents, you can learn more about it here:
     # https://docs.crewai.com/concepts/agents#agent-tools
     @agent
-    def researcher(self) -> Agent:
+    def outliner(self) -> Agent:
         return Agent(
-            config=self.agents_config['researcher'], # type: ignore[index]
-            verbose=True
+            config=self.agents_config['outliner'], # type: ignore[index]
+            verbose=True,
         )
 
     @agent
-    def copywriter(self) -> Agent:
+    def writer(self) -> Agent:
         return Agent(
-            config=self.agents_config['copywriter'], # type: ignore[index]
-            verbose=True
-        )
-
-    @agent
-    def editor(self) -> Agent:
-        return Agent(
-            config=self.agents_config['editor'], # type: ignore[index]
+            config=self.agents_config['writer'], # type: ignore[index]
             verbose=True
         )
 
@@ -51,27 +44,28 @@ class BlogPostWriter():
     # task dependencies, and task callbacks, check out the documentation:
     # https://docs.crewai.com/concepts/tasks#overview-of-a-task
     @task
-    def research_task(self) -> Task:
+    def outlining_task(self) -> Task:
         return Task(
-            config=self.tasks_config['research_task'], # type: ignore[index]
+            config=self.tasks_config['outlining_task'], # type: ignore[index]
+            human_input=True,
         )
 
     @task
-    def write_task(self) -> Task:
+    def drafting_task(self) -> Task:
         return Task(
-            config=self.tasks_config['write_task'], # type: ignore[index]
+            config=self.tasks_config['drafting_task'], # type: ignore[index]
         )
 
     @task
-    def edit_task(self) -> Task:
+    def refinement_task(self) -> Task:
         return Task(
-            config=self.tasks_config['edit_task'], # type: ignore[index]
+            config=self.tasks_config['refinement_task'], # type: ignore[index]
         )
 
     @task
-    def export_markdown_task(self) -> Task:
+    def convert_to_markdown_task(self) -> Task:
         return Task(
-            config=self.tasks_config['export_markdown_task'], # type: ignore[index]
+            config=self.tasks_config['convert_to_markdown_task'], # type: ignore[index]
             output_file='blog_post.md'
         )
 
